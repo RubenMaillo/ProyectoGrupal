@@ -1,0 +1,118 @@
+<html>
+
+		<body>
+		<script>
+				var posicionActual = 1;
+				var totalHabitaciones = 7; // *** OJO ***!!! Numero total de habitaciones MENOS 3
+				function carruselIzquierda() {
+					if (posicionActual < totalHabitaciones){
+						posicionActual++;
+						document.getElementById("habitacion1").innerHTML = document.getElementById("habitacion2").innerHTML;
+						document.getElementById("habitacion2").innerHTML = document.getElementById("habitacion3").innerHTML;
+						document.getElementById("habitacion3").innerHTML = document.getElementById("habitacion4").innerHTML;
+						document.getElementById("habitacion4").innerHTML = 
+								'<img src="configuracion/media/imagen/habi - copia (' + (posicionActual + 3) + ').jpg"/>' + 
+								'<h1>Habitación ' + (posicionActual + 3) + '</h1>' +
+								'<p>Información básica de la primera habitación</p>' +
+								'<a href="">Más información</a>';
+					};
+				  }
+			  
+				function carruselDerecha() {
+					if (posicionActual > 1){
+						posicionActual--;
+						document.getElementById("habitacion4").innerHTML = document.getElementById("habitacion3").innerHTML;
+						document.getElementById("habitacion3").innerHTML = document.getElementById("habitacion2").innerHTML;
+						document.getElementById("habitacion2").innerHTML = document.getElementById("habitacion1").innerHTML;
+						document.getElementById("habitacion1").innerHTML = 
+						'<img src="configuracion/media/imagen/habi - copia (' + (posicionActual) + ').jpg"/>' + 
+								'<h1>Habitación ' + (posicionActual) + '</h1>' +
+								'<p>Información básica de la primera habitación</p>' +
+								'<a href="">Más información</a>';
+					}
+				}
+			
+				function izquierda(){ 
+				   if (posicionActual < totalHabitaciones){
+						posicionActual++;
+						document.getElementById("habitacion"+posicionActual).offsetLeft; 
+						document.getElementById("habitacion"+posicionActual).style.left=posicionx  - 20;
+					}
+				}
+			
+				function derecha(){
+					if (posicionActual > 1){
+						posicionActual--;
+						document.getElementById("habitacion"+posicionActual).offsetLeft; 
+						document.getElementById("habitacion"+posicionActual).style.left=posicionx + 20; 
+					}
+				} 
+			
+				$("a").on("click", function(){
+					$("#texto").load("subpaginas/habitacion.html");
+				});	
+			</script>
+
+<center><h1>Habitaciones</h1></center>
+<section id="fondo">
+
+<article class="contenedor">
+	<div id="habitacion" class="divContenedor">
+		<img src="configuracion/media/imagen/habi.jpg"/>
+		<h1>Habitación 1</h1>
+		<p>Información básica de la primera habitación</p>
+		<a>Más información</a>
+	</div>
+	<div id="habitacion" class="divContenedor">
+		<img src="configuracion/media/imagen/habi.jpg"/>
+		<h1>Habitación 2</h1>
+		<p>Información básica de la segunda habitación</p>
+		<a>Más información</a>
+	</div>
+	<div id="habitacion" class="divContenedor">
+		<img src="configuracion/media/imagen/habi.jpg"/>
+		<h1>Habitación 3</h1>
+		<p>Información básica de la tercera habitación</p>
+		<a>Más información</a>
+	</div>
+	<div id="habitacion" class="divContenedor">
+		<img src="configuracion/media/imagen/habi.jpg"/>
+		<h1>Habitación 4</h1>
+		<p>Información básica de la cuarta habitación</p>
+		<a>Más información</a>
+	</div>
+</article>
+
+<article class="contenedor2" style="margin-top:25%; margin-bottom:30%">
+<img class="flecha" src="configuracion/media/imagen/izquierda.png" style="width:50px;height:50px;" onclick="carruselIzquierda()" onmouseover="this.src='configuracion/media/imagen/izquierdahover.png';" onmouseout="this.src='configuracion/media/imagen/izquierda.png';"/>
+	<div id="habitacion1" class="imgCarrusel">
+		<img src="configuracion/media/imagen/habi.jpg"/>
+		<h1>Habitación 1</h1>
+		<p>Información básica de la primera habitación</p>
+		<a>Más información</a>
+	</div>
+	<div id="habitacion2" class="imgCarrusel">
+		<img src="configuracion/media/imagen/habi.jpg"/>
+		<h1>Habitación 2</h1>
+		<p>Información básica de la segunda habitación</p>
+		<a>Más información</a>
+	</div>
+	<div id="habitacion3" class="imgCarrusel">
+		<img src="configuracion/media/imagen/habi.jpg"/>
+		<h1>Habitación 3</h1>
+		<p>Información básica de la tercera habitación</p>
+		<a>Más información</a>
+	</div>
+	<div id="habitacion4" class="imgCarrusel">
+		<img src="configuracion/media/imagen/habi.jpg"/>
+		<h1>Habitación 4</h1>
+		<p>Información básica de la cuarta habitación</p>
+		<a>Más información</a>
+	</div>
+	<img class="flecha" src="configuracion/media/imagen/derecha.png" style="width:50px;height:50px;" onclick="carruselDerecha()" onmouseover="this.src='configuracion/media/imagen/derechahover.png';" onmouseout="this.src='configuracion/media/imagen/derecha.png';"/>
+
+</article>
+</section>
+</body>
+
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="UTF-8">
+    <!--FUENTE-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <!--ICONOS, BOOTSTRAP , ESTILOS Y JQUERY UI-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="configuracion/estilos/jquery-ui.css">
+    <!--LINKS LOCALES-->
+	<link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="configuracion/estilos/estilos.css">
+    <!--JQUERY Y JQUERY UI-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>Egoi Perez</title>
+</head>
+<body>
+    <script src="configuracion/js/file_get_contents.js" type="text/javascript"></script>
+    <script>
+        $(".pie").hide();
+        $(document).ready(function(){
+            $(window).scroll(function() {
+                if ($(document).scrollTop()<=$(document).height()-750){
+                    $(".pie").hide();
+                }else{
+                    $(".pie").show();
+                }
+            });
+            $("#tipoUsu").on("change", function(){
+                if (tipoUsu.selectedIndex==1){
+                    var audio = new Audio('configuracion/media/imagen/dinero.mp3');
+                    audio.play();  
+                }
+                if (tipoUsu.selectedIndex==2){
+                    var audio = new Audio('configuracion/audio/mediasonido.mp3');
+                    audio.play();  
+                }
+            });
+            $("li").click(function(){
+                $("li").removeClass("seleccionado");
+                $(this).addClass("seleccionado");
+                $(".pie").hide();
+                //cargar contenidos en base al li que esté seleccionado
+                switch($(this).text()){
+                    
+                    case "Inicio ":
+
+                        $("#texto").load("subpaginas/inicio.html", );
+                        break;
+
+                    case "Sobre nosotros":
+
+                        $("#texto").load("subpaginas/about.html");
+                        break;
+
+                    case "Alquila tu habitación":
+
+                
+                        break;
+
+                    case "Alquileres actuales":
+
+                        $("#texto").load("subpaginas/habitaciones.html");
+                        break;    
+                }
+            });
+            $(".dialog").hide();
+            $(".registro").hide();
+            $(".login").on("click", function(){
+                $("body").css("overflow-y", "hidden");
+                $(".dialog").dialog({
+                    modal: true,
+                    minWidth: 500,
+                    title: "Inicio sesión",
+                    closeOnEscape: true,
+                    beforeClose: function( event, ui ) {
+                        $("body").css("overflow-y", "auto");
+                    },
+                    buttons: [{ 
+                        text: "Iniciar sesión", 
+                        icon: "ui-icon-key",  
+                        click: function() {
+                            console.log("He iniciado sesión");
+                        }
+                    }]
+                });
+            });
+            $("#registrarme").click(function(){
+                $(".registro").dialog({
+                    modal: true,
+                    title: "Registro",
+                    closeOnEscape: true,
+                    minWidth:550,
+                    maxHeight:600,
+                    beforeClose: function( event, ui ) {
+                        $("body").css("overflow-y", "auto");
+                        $(".dialog").dialog( "close" );
+                    },
+                    buttons: {        
+                        "Atras": function() {
+                            $( this ).dialog( "close" );
+                            $(".dialog").dialog({
+                                modal: true,
+                                minWidth: 500,
+                                title: "Inicio sesión",
+                                closeOnEscape: true,
+                                beforeClose: function( event, ui ) {
+                                    $("body").css("overflow-y", "auto");
+                                },
+                                buttons: [{ 
+                                    text: "Iniciar sesión", 
+                                    icon: "ui-icon-key",  
+                                    click: function() {
+                                        console.log("He iniciado sesión");
+                                    }
+                                }]
+                            });
+                            $("body").css("overflow-y", "hidden");
+                        },
+                        "Registrarse": function() {
+                           
+                        }
+                    }
+                });
+            });
+            $(window).on("scroll", function(){
+                if ($(window).scrollTop()>110){
+                    $("nav ul").css("background", "rgb(104, 19, 76)");
+                    $("nav ul").css("color", "rgb(198, 134, 177)");
+                    $("nav a").css("color", "rgb(198, 134, 177)");
+                }else{
+                    $("nav ul").css("color", "white");
+                    $("nav ul").css("background", "none");
+                    $("nav a").css("color", "white");
+                }
+            });
+            $(".desplegar").click(function(){
+                var escondido = $("li").is(":hidden");
+                $("li").slideToggle();
+                if (escondido) {
+                    $(".menu").css({'transform' : 'rotate(0deg)', 'transition' : '0.5s'});
+                }else{
+                    $(".menu").css({'transform' : 'rotate(180deg)', 'transition' : '0.5s'});
+                }
+            });
+        });
+    </script>
+    <header class="row">
+        <div class="col-sm-12">
+            <nav>
+                <button class="desplegar"><i class="fa fa-angle-up menu"></i></button>
+                <ul> 
+                    <li class="seleccionado">Inicio <i class="fa fa-home"></i></li>
+                    <li>Sobre nosotros</li>
+                    <li>Alquila tu habitación</li>
+                    <li>Alquileres actuales</li>
+                    <li class="login"><i class="fa fa-user-o"></i></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+   
+    <section class="row">
+        <div class="col-sm-12 contenido">
+            <article class="imagen2">
+            </article>
+            <section id="texto"><br><br>
+                <script>
+                    $("#texto").load("subpaginas/inicio.html");
+                </script>
+            </section>
+        </div>
+    </section>
+    <section class="row">
+        <div class="col-sm-12">
+            <div class="dialog">
+                <label for="">Nombre Usuario</label>
+                <input type="text" placeholder="Indique un nombre de usuario" size="30">
+                <br>
+                <label for="">Contraseña</label>
+                <input type="password" placeholder="Indique una contraseña" size="30">
+                <br>
+                <p>¿No tienes una cuenta aún?<a id="registrarme">Regístrate</a></p>
+            </div>
+        </div>
+    </section>
+    <section class="row">
+        <div class="col-sm-12">
+            <div class="registro">
+                <div>
+                    <form action="">
+                        <label for="">Tipo de usuario:</label>
+                        <select name="tipoUsuario" id="tipoUsu">
+                            <option value="volvo"></option>
+                            <option value="volvo">El alquilado</option>
+                            <option value="saab">El alquilador</option>
+                        </select>
+                        <br>
+                        <label for="">Nombre:</label>
+                        <input type="text" placeholder="Indique un nombre de usuario">
+                        <br>
+                        <label for="">Correo:</label>
+                        <input type="text" placeholder="Indique un correo electrónico">
+                        <br>
+                        <label for="">Nombre de usuario:</label>
+                        <input type="text" placeholder="Escriba su nombre">
+                        <br>
+                        <label for="">Contraseña:</label>
+                        <input type="text" placeholder="Contraseña para su cuenta">
+                        <br>
+                        <label for="">Confirmar contraseña:</label>
+                        <input type="text" placeholder="Confirmar la contraseña">
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="container">
+        <div class="row">
+            <div class="col-sm-12 pie">
+                <section>
+                    <article>
+                        <h4>Información</h4>
+                    </article>
+                </section>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
